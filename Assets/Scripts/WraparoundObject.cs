@@ -4,7 +4,6 @@ using UnityEngine;
 namespace DefaultNamespace
 {
     
-    [RequireComponent(typeof(Collider2D))]
     public class WraparoundObject : MonoBehaviour
     {
 

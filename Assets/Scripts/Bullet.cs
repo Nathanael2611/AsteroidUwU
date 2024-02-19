@@ -1,11 +1,15 @@
 ﻿using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace DefaultNamespace
 {
     public class Bullet : MonoBehaviour
     {
+
+        public float speed = 1F;
+        public float timeBeforeDestroy = 1F;
         
         public Vector2 direction = Vector2.zero;
 
@@ -20,8 +24,8 @@ namespace DefaultNamespace
 
         public void Update()
         {
-            this._rigidbody.velocity = this.transform.TransformVector(new Vector3(0, 1)) * 30;
-            if (Time.time - this._timeCreated > 3)
+            this._rigidbody.velocity = this.transform.TransformVector(new Vector3(0, 1)) * this.speed;
+            if (Time.time - this._timeCreated > this.timeBeforeDestroy)
             {
                 GameObject.Destroy(this.gameObject);
             }
@@ -36,8 +40,9 @@ namespace DefaultNamespace
             Rigidbody2D r = b.GetComponent<Rigidbody2D>();
             r.rotation = launcher.GetRigidBody().rotation;
             //r.totalTorque = launcher.GetRigidBody().totalTorque * 0.1F;
-            WraparoundObject wraparoundObject = obj.AddComponent<WraparoundObject>();
-            wraparoundObject.zone = launcher.GetComponent<WraparoundObject>().zone;
+            //WraparoundObject wraparoundObject = obj.AddComponent<WraparoundObject>();
+            //wraparoundObject.zone = launcher.GetComponent<WraparoundObject>().zone;
+            Physics2D.IgnoreCollision(launcher.GetComponent<Collider2D>(), obj.GetComponent<Collider2D>());
             return b;
         }
         
