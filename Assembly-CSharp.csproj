@@ -47,10 +47,14 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AsteroidPart.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
+     <Compile Include="Assets\Scripts\ResourceCache.cs" />
      <Compile Include="Assets\Scripts\Rocket.cs" />
+     <Compile Include="Assets\Scripts\Caches.cs" />
      <Compile Include="Assets\Scripts\Utils.cs" />
      <Compile Include="Assets\Scripts\WraparoundObject.cs" />
+     <Compile Include="Assets\Scripts\AsteroidSpawner.cs" />
      <Folder Include="Assets" />
+     <Folder Include="Assets\Resources\Sprites" />
      <Folder Include="Assets\Settings" />
      <Folder Include="Assets\Resources" />
      <Folder Include="Assets\Scenes" />
@@ -310,11 +314,11 @@
      <Reference Include="Unity.Collections.LowLevel.ILSupport">
      <HintPath>C:\Users\natha\AsteroidUwu\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-     <HintPath>C:\Users\natha\AsteroidUwu\Library\PackageCache\com.unity.visualscripting@1.9.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-     </Reference>
      <Reference Include="DOTween">
      <HintPath>C:\Users\natha\AsteroidUwu\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+     <HintPath>C:\Users\natha\AsteroidUwu\Library\PackageCache\com.unity.visualscripting@1.9.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.11f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

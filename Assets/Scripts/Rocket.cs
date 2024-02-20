@@ -57,6 +57,7 @@ public class Rocket : MonoBehaviour
             initialize.speed = this.bulletSpeed;
             initialize.timeBeforeDestroy = this.livingBulletTime;
             this.transform.DOShakeScale(0.1F);
+            this._rigidBody.AddRelativeForce(new Vector2(0, -1) * 10);
             if (this._tweener == null || !this._tweener.IsActive() || this._tweener.IsComplete())
             {
                 this._tweener = Utils.GetCameraGameObject().transform.DOShakePosition(0.4F, 0.1F);

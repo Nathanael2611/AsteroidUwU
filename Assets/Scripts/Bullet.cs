@@ -41,7 +41,7 @@ namespace DefaultNamespace
             r.rotation = launcher.GetRigidBody().rotation;
             //r.totalTorque = launcher.GetRigidBody().totalTorque * 0.1F;
             //WraparoundObject wraparoundObject = obj.AddComponent<WraparoundObject>();
-            //wraparoundObject.zone = launcher.GetComponent<WraparoundObject>().zone;
+            //wraparoundObject.zone = GameObject.FindGameObjectWithTag("MissileBackground").GetComponent<BoxCollider2D>();
             Physics2D.IgnoreCollision(launcher.GetComponent<Collider2D>(), obj.GetComponent<Collider2D>());
             return b;
         }

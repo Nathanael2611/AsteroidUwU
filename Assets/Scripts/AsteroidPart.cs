@@ -3,6 +3,7 @@ using DG.Tweening;
 using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = Unity.Mathematics.Random;
 
 namespace DefaultNamespace
 {
@@ -19,7 +20,6 @@ namespace DefaultNamespace
 
         private void Update()
         {
-            Debug.Log(this._rigidbody.velocity);
             if (this.parent != null)
             {
                 this._rigidbody.bodyType = RigidbodyType2D.Kinematic;
@@ -42,7 +42,7 @@ namespace DefaultNamespace
                     circleCollider2D.radius = 0.1F;
                 }
                 this._wraparoundObject = this.AddComponent<WraparoundObject>();
-                this._wraparoundObject.zone = GameObject.FindGameObjectWithTag("Background").GetComponent<BoxCollider2D>();
+                this._wraparoundObject.radius = 10F;
             }
 
             if (this._wraparoundObject != null && this.parent != null)
@@ -75,7 +75,7 @@ namespace DefaultNamespace
                     if (component)
                     {
                         component.bodyType = RigidbodyType2D.Dynamic;
-                        component.velocity = new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1));
+                        component.velocity = WraparoundObject.Rotate(new Vector2(1, 0), Mathf.Deg2Rad * (UnityEngine.Random.Range(0, 360)));
                     }
 
                     AsteroidPart part = child.GetComponent<AsteroidPart>();
@@ -128,5 +128,26 @@ namespace DefaultNamespace
 
             }
         }
+
+
+        public static GameObject NewAsteroidPart()
+        {
+            GameObject container = new GameObject();
+            AsteroidPart parent = container.AddComponent<AsteroidPart>();
+
+            int n = UnityEngine.Random.Range(2, 4);
+
+            for (int i = 0; i < n; i++)
+            {
+                GameObject spritePart = GameObject.Instantiate(Caches.PrefabCache.Get("Prefabs/Asteroid"), parent.transform, true);
+                spritePart.transform.Translate(new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1)));
+                AsteroidPart asteroidPart = spritePart.GetComponent<AsteroidPart>();
+                asteroidPart.parent = parent;
+            }
+            
+            return container;
+        }
+        
+        
     }
 }
