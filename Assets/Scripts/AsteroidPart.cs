@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Numerics;
 using DG.Tweening;
 using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 using Random = Unity.Mathematics.Random;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace DefaultNamespace
 {
@@ -136,11 +140,24 @@ namespace DefaultNamespace
             AsteroidPart parent = container.AddComponent<AsteroidPart>();
 
             int n = UnityEngine.Random.Range(2, 4);
+            Vector2 lastTranslate = Vector2.zero;
 
             for (int i = 0; i < n; i++)
             {
                 GameObject spritePart = GameObject.Instantiate(Caches.PrefabCache.Get("Prefabs/Asteroid"), parent.transform, true);
-                spritePart.transform.Translate(new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1)));
+                //spritePart.transform.position = new Vector3();
+                Vector2 pos = new Vector2(1, 0);
+                if (lastTranslate == Vector2.zero)
+                {
+                    pos = Vector2.zero;
+                }
+                else
+                {
+                    pos = WraparoundObject.Rotate(pos, UnityEngine.Random.Range(0, 360) * Mathf.Deg2Rad);
+                }
+
+                spritePart.transform.Translate(lastTranslate + pos);
+                lastTranslate += pos;
                 AsteroidPart asteroidPart = spritePart.GetComponent<AsteroidPart>();
                 asteroidPart.parent = parent;
             }
